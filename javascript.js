@@ -14,4 +14,16 @@ function divide(a,b){
     return a/b;
 }
 
-console.log(divide(2,0));
+function operate(operator,a,b){
+    let solution;
+
+    switch(operator){
+        case add: solution = add(a,b); break;
+        case subtract: solution = subtract(a,b); break;
+        case multiply: solution = multiply(a,b); break;
+        case divide: solution = divide(a,b); break;
+        default: console.log("xd"); break;
+    }
+
+    return solution;
+}

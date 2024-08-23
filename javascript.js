@@ -27,3 +27,6 @@ function operate(operator,a,b){
 
     return solution;
 }
+
+const numericKeyboardBtns = document.querySelectorAll(".num");
+const operatorsBtns = document.querySelectorAll(".operator");

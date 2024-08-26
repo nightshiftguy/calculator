@@ -36,6 +36,19 @@ const numericKeyboardBtns = document.querySelectorAll(".num");
 const operatorsBtns = document.querySelectorAll(".operator");
 const output = document.querySelector("#output");
 
+function updateOutput(){
+    let content;
+    if(firstNumber !== undefined){
+        content+=firstNumber;
+    }
+    if(operator !== undefined){
+        content+=operator;
+    }
+    if(secondNumber !== undefined){
+        content+=secondNumber;
+    }
+    output.textContent=content;
+}
 
 function addNumber(event){
     n = event.currentTarget.keyNumber;
@@ -47,6 +60,7 @@ function addNumber(event){
         if(secondNumber === undefined)   secondNumber = "";
         secondNumber += ""+n;
     }
+    updateOutput();
 }
 
 for(let i=0; i<numericKeyboardBtns.length; i++){
@@ -54,6 +68,5 @@ for(let i=0; i<numericKeyboardBtns.length; i++){
     numericKeyboardBtns[i].addEventListener("click",addNumber);
 }
 
-//upgrade addNumber to make it update output
 //add function to add operators
 //add listener to compute output

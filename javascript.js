@@ -33,8 +33,8 @@ function operate(operator,a,b){
 }
 
 const numericKeyboardBtns = document.querySelectorAll(".num");
-console.log(numericKeyboardBtns);
 const operatorsBtns = document.querySelectorAll(".operator");
+
 
 function addNumber(event){
     console.log("działa");
@@ -42,12 +42,10 @@ function addNumber(event){
     if(operator === undefined){
         if(firstNumber === undefined)   firstNumber = "";
         firstNumber += ""+n;
-        console.log(firstNumber);
     }
     else if(operator !== undefined){
         if(secondNumber === undefined)   secondNumber = "";
         secondNumber += ""+n;
-        console.log(secondNumber);
     }
 }
 

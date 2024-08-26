@@ -18,14 +18,14 @@ function divide(a,b){
 
 function operate(operator,a,b){
     let solution;
-    a = Number(a);
-    b = Number(b);
 
+    a= +a;
+    b= +b;
     switch(operator){
-        case 0: solution = add(a,b); break;
-        case 1: solution = subtract(a,b); break;
-        case 2: solution = multiply(a,b); break;
-        case 3: solution = divide(a,b); break;
+        case "+": solution = add(a,b); break;
+        case "-": solution = subtract(a,b); break;
+        case "*": solution = multiply(a,b); break;
+        case ":": solution = divide(a,b); break;
         default: console.log("xd"); break;
     }
 
@@ -92,7 +92,7 @@ for(let i=0; i<operatorsBtns.length; i++){
 
 clearBtn.addEventListener("click", clear);
 operateBtn.addEventListener("click", () =>{
-    let outcome = operate(operator);
+    let outcome = operate(operator,firstNumber,secondNumber);
     clear();
     firstNumber=outcome;
     updateOutput();

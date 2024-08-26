@@ -37,7 +37,7 @@ const operatorsBtns = document.querySelectorAll(".operator");
 const output = document.querySelector("#output");
 
 function updateOutput(){
-    let content;
+    let content = "";
     if(firstNumber !== undefined){
         content+=firstNumber;
     }

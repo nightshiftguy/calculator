@@ -51,14 +51,14 @@ function updateOutput(){
 }
 
 function addNumber(event){
-    n = event.currentTarget.keyNumber;
+    keyNumber = event.currentTarget.keyNumber;
     if(operator === undefined){
         if(firstNumber === undefined)   firstNumber = "";
-        firstNumber += ""+n;
+        firstNumber += ""+keyNumber;
     }
     else if(operator !== undefined){
         if(secondNumber === undefined)   secondNumber = "";
-        secondNumber += ""+n;
+        secondNumber += ""+keyNumber;
     }
     updateOutput();
 }
@@ -68,5 +68,20 @@ for(let i=0; i<numericKeyboardBtns.length; i++){
     numericKeyboardBtns[i].addEventListener("click",addNumber);
 }
 
-//add function to add operators
+function addOperator(event){
+    let keyOperator = event.currentTarget.keyOperator;
+    if(firstNumber !== undefined && secondNumber === undefined){
+        operator = keyOperator;
+    }
+    updateOutput();
+}
+
+function clear(){
+    output.textContent = "";
+}
+
+for(let i=0; i<operatorsBtns.length; i++){
+    operatorsBtns[i].keyOperator = operatorsBtns[i].textContent;
+    operatorsBtns[i].addEventListener("click",addOperator);
+}
 //add listener to compute output

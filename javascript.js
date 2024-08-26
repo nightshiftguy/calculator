@@ -34,10 +34,10 @@ function operate(operator,a,b){
 
 const numericKeyboardBtns = document.querySelectorAll(".num");
 const operatorsBtns = document.querySelectorAll(".operator");
+const output = document.querySelector("#output");
 
 
 function addNumber(event){
-    console.log("działa");
     n = event.currentTarget.keyNumber;
     if(operator === undefined){
         if(firstNumber === undefined)   firstNumber = "";

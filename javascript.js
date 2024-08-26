@@ -35,6 +35,8 @@ function operate(operator,a,b){
 const numericKeyboardBtns = document.querySelectorAll(".num");
 const operatorsBtns = document.querySelectorAll(".operator");
 const output = document.querySelector("#output");
+const clearBtn = document.querySelector("#clear");
+const operateBtn = document.querySelector("#operate");
 
 function updateOutput(){
     let content = "";
@@ -77,6 +79,9 @@ function addOperator(event){
 }
 
 function clear(){
+    firstNumber= undefined;
+    secondNumber = undefined;
+    operator = undefined;
     output.textContent = "";
 }
 
@@ -84,4 +89,11 @@ for(let i=0; i<operatorsBtns.length; i++){
     operatorsBtns[i].keyOperator = operatorsBtns[i].textContent;
     operatorsBtns[i].addEventListener("click",addOperator);
 }
-//add listener to compute output
+
+clearBtn.addEventListener("click", clear);
+operateBtn.addEventListener("click", () =>{
+    let outcome = operate(operator);
+    clear();
+    firstNumber=outcome;
+    updateOutput();
+});

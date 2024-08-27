@@ -38,7 +38,7 @@ function operate(operator,a,b){
         default: console.log("xd"); break;
     }
 
-    solution = parseFloat(solution).toFixed(3);
+    if(solution !== "error")    solution = parseFloat(solution.toFixed(3));
 
     return solution;
 }
@@ -75,11 +75,13 @@ function addNumber(event){
     keyNumber = event.currentTarget.keyNumber;
     if(operator === undefined){
         if(firstNumber === undefined)   firstNumber = "";
-        firstNumber += ""+keyNumber;
+        if(firstNumber === "0")   firstNumber=keyNumber;
+        else    firstNumber += ""+keyNumber;
     }
     else if(operator !== undefined){
         if(secondNumber === undefined)   secondNumber = "";
-        secondNumber += ""+keyNumber;
+        if(secondNumber === "0")   secondNumber=keyNumber;
+        else    secondNumber += ""+keyNumber;
     }
     updateOutput();
 }

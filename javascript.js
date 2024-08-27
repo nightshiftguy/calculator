@@ -38,11 +38,13 @@ function operate(operator,a,b){
         default: console.log("xd"); break;
     }
 
+    solution = parseFloat(solution).toFixed(3);
+
     return solution;
 }
 
 function computeAndUpdateOutput(){
-    if(!secondNumber) return;
+    if(secondNumber === undefined) return;
     let outcome = operate(operator,firstNumber,secondNumber);
     clear();
     if(outcome!=="error"){
@@ -84,7 +86,7 @@ function addNumber(event){
 
 function addOperator(event){
     let keyOperator = event.currentTarget.keyOperator;
-    
+
     if(firstNumber !== undefined){
         if(secondNumber === undefined){
             operator = keyOperator;

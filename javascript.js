@@ -103,11 +103,12 @@ function addOperator(event){
 }
 
 function clear(){
-    firstNumber= undefined;
+    firstNumber= "0";
     secondNumber = undefined;
     operator = undefined;
-    output.textContent = "";
+    output.textContent=firstNumber;
 }
+clear();
 
 for(let i=0; i<numericKeyboardBtns.length; i++){
     numericKeyboardBtns[i].keyNumber = i;

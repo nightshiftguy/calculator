@@ -13,12 +13,15 @@ function multiply(a,b){
 }
 
 function divide(a,b){
+    if(b===0) {
+        return "error";
+    }
     return a/b;
 }
 
 function operate(operator,a,b){
     let solution;
-
+    
     a= +a;
     b= +b;
     switch(operator){
@@ -92,8 +95,15 @@ for(let i=0; i<operatorsBtns.length; i++){
 
 clearBtn.addEventListener("click", clear);
 operateBtn.addEventListener("click", () =>{
+    if(!secondNumber) return;
     let outcome = operate(operator,firstNumber,secondNumber);
     clear();
-    firstNumber=outcome;
-    updateOutput();
+    if(outcome!=="error"){
+        firstNumber=outcome;
+        updateOutput();
+    }
+    else{
+        output.textContent = ";)";
+        return;
+    }
 });

@@ -1,5 +1,11 @@
 let firstNumber, secondNumber, operator;
 
+const numericKeyboardBtns = document.querySelectorAll(".num");
+const operatorsBtns = document.querySelectorAll(".operator");
+const output = document.querySelector("#output");
+const clearBtn = document.querySelector("#clear");
+const operateBtn = document.querySelector("#operate");
+
 function add(a,b){
     return a+b;
 }
@@ -35,11 +41,19 @@ function operate(operator,a,b){
     return solution;
 }
 
-const numericKeyboardBtns = document.querySelectorAll(".num");
-const operatorsBtns = document.querySelectorAll(".operator");
-const output = document.querySelector("#output");
-const clearBtn = document.querySelector("#clear");
-const operateBtn = document.querySelector("#operate");
+function computeAndUpdateOutput(){
+    if(!secondNumber) return;
+    let outcome = operate(operator,firstNumber,secondNumber);
+    clear();
+    if(outcome!=="error"){
+        firstNumber=outcome;
+        updateOutput();
+    }
+    else{
+        output.textContent = ";)";
+        return;
+    }
+}
 
 function updateOutput(){
     let content = "";
@@ -68,17 +82,20 @@ function addNumber(event){
     updateOutput();
 }
 
-for(let i=0; i<numericKeyboardBtns.length; i++){
-    numericKeyboardBtns[i].keyNumber = i;
-    numericKeyboardBtns[i].addEventListener("click",addNumber);
-}
-
 function addOperator(event){
     let keyOperator = event.currentTarget.keyOperator;
-    if(firstNumber !== undefined && secondNumber === undefined){
-        operator = keyOperator;
+    
+    if(firstNumber !== undefined){
+        if(secondNumber === undefined){
+            operator = keyOperator;
+            updateOutput();
+        }
+        else if(secondNumber !== undefined){
+            computeAndUpdateOutput();
+            operator=keyOperator;
+            updateOutput();
+        }
     }
-    updateOutput();
 }
 
 function clear(){
@@ -88,22 +105,16 @@ function clear(){
     output.textContent = "";
 }
 
+for(let i=0; i<numericKeyboardBtns.length; i++){
+    numericKeyboardBtns[i].keyNumber = i;
+    numericKeyboardBtns[i].addEventListener("click",addNumber);
+}
+
 for(let i=0; i<operatorsBtns.length; i++){
     operatorsBtns[i].keyOperator = operatorsBtns[i].textContent;
     operatorsBtns[i].addEventListener("click",addOperator);
 }
 
 clearBtn.addEventListener("click", clear);
-operateBtn.addEventListener("click", () =>{
-    if(!secondNumber) return;
-    let outcome = operate(operator,firstNumber,secondNumber);
-    clear();
-    if(outcome!=="error"){
-        firstNumber=outcome;
-        updateOutput();
-    }
-    else{
-        output.textContent = ";)";
-        return;
-    }
-});
+
+operateBtn.addEventListener("click", computeAndUpdateOutput);
